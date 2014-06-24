@@ -17,6 +17,16 @@
         }
 
         [Test]
+        public void ParseWorks()
+        {
+            var position = Position.Parse("2,3,N");
+
+            Check.That(position.X).IsEqualTo(2);
+            Check.That(position.Y).IsEqualTo(3);
+            Check.That(position.CardinalCompassOrientation).IsEqualTo("N");
+        }
+
+        [Test]
         public void ToStringWorks()
         {
             var firstPosition = new Position(2, 3, "N");

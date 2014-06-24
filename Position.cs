@@ -1,5 +1,7 @@
 namespace MarsRovers
 {
+    using System;
+
     public class Position
     {
         public int X { get; private set; }
@@ -61,6 +63,12 @@ namespace MarsRovers
         public static bool operator !=(Position left, Position right)
         {
             return !Equals(left, right);
+        }
+
+        public static Position Parse(string positionPattern)
+        {
+            var splitedPattern = positionPattern.Split(',');
+            return new Position(Convert.ToInt16(splitedPattern[0]), Convert.ToInt16(splitedPattern[1]), splitedPattern[2]);
         }
     }
 }
