@@ -2,6 +2,14 @@ namespace MarsRovers
 {
     using System;
 
+    using NUnit.Framework.Constraints;
+
+    /// <summary>
+    /// Describes a position.
+    /// <remarks>
+    ///     implement closure of operations
+    /// </remarks>
+    /// </summary>
     public class Position
     {
         public int X { get; private set; }
@@ -69,6 +77,96 @@ namespace MarsRovers
         {
             var splitedPattern = positionPattern.Split(',');
             return new Position(Convert.ToInt16(splitedPattern[0]), Convert.ToInt16(splitedPattern[1]), splitedPattern[2]);
+        }
+
+        public Position Move(Plateau plateau)
+        {
+            Position newPosition = this;
+
+            if (this.IsNorthOriented() && this.DoesNotTouchTheNorthBundaries(plateau))
+            {
+                newPosition = new Position(this.X, this.Y + 1, this.CardinalCompassOrientation);
+            }
+
+            if (this.IsSouthOriented() && this.DoesNotTouchTheSouthBundaries(plateau))
+            {
+                newPosition = new Position(this.X, this.Y - 1, this.CardinalCompassOrientation);
+            }
+
+            if (this.IsEastOriented() && this.DoesNotTouchTheEastBundaries(plateau))
+            {
+                newPosition = new Position(this.X + 1, this.Y, this.CardinalCompassOrientation);
+            }
+
+            if (this.IsWestOriented() && this.DoesNotTouchTheWestBundaries(plateau))
+            {
+                newPosition = new Position(this.X - 1, this.Y, this.CardinalCompassOrientation);
+            }
+
+            return newPosition;
+        }
+
+        private bool DoesNotTouchTheWestBundaries(Plateau plateau)
+        {
+            return this.X > 0;
+        }
+
+        private bool DoesNotTouchTheEastBundaries(Plateau plateau)
+        {
+            return this.X < plateau.UpperRightCoordinatesX;
+        }
+
+        private bool IsEastOriented()
+        {
+            return this.CardinalCompassOrientation == "E";
+        }
+
+        private bool IsWestOriented()
+        {
+            return this.CardinalCompassOrientation == "W";
+        }
+        
+        private bool IsNorthOriented()
+        {
+            return this.CardinalCompassOrientation == "N";
+        }
+
+        private bool IsSouthOriented()
+        {
+            return this.CardinalCompassOrientation == "S";
+        }
+
+        private bool DoesNotTouchTheNorthBundaries(Plateau plateau)
+        {
+            return this.Y < plateau.UpperRightCoordinatesY;
+        }
+
+        private bool DoesNotTouchTheSouthBundaries(Plateau plateau)
+        {
+            return this.Y > 0;
+        }
+
+        public Position TurnLeft()
+        {
+            switch (this.CardinalCompassOrientation)
+            {
+                case "N":
+                    return new Position(this.X, this.Y, "W");
+
+                case "W":
+                    return new Position(this.X, this.Y, "S");
+
+                case "S":
+                    return new Position(this.X, this.Y, "E");
+
+                case "E":
+                    return new Position(this.X, this.Y, "N");
+
+                default: throw new InvalidOperationException("Can not turn left from this unknown cardinal compass orientation.");
+                    break;
+            }
+
+            return this;
         }
     }
 }
