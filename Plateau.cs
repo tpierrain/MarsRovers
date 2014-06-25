@@ -4,13 +4,13 @@ namespace MarsRovers
     using System.Collections.Generic;
 
     /// <summary>
-    /// Surface where Rovers may land and move.
+    /// Field where Rovers may land and move.
     /// </summary>
     public class Plateau
     {
         #region Fields
 
-        private readonly Dictionary<Rover, Position> roversPositions;
+        private readonly Dictionary<Rover, Position> roversOnTheFieldWithTheirPositions;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace MarsRovers
         public Plateau(string upperRightCoordinates)
         {
             var splitedCoordinates = upperRightCoordinates.Split(',');
-            this.roversPositions = new Dictionary<Rover, Position>();
+            this.roversOnTheFieldWithTheirPositions = new Dictionary<Rover, Position>();
             this.UpperRightCoordinatesX = Convert.ToInt16(splitedCoordinates[0]);
             this.UpperRightCoordinatesY = Convert.ToInt16(splitedCoordinates[1]);
         }
@@ -35,7 +35,7 @@ namespace MarsRovers
         /// <param name="upperRightCoordinatesY">The upper right coordinates y.</param>
         public Plateau(int upperRightCoordinatesX, int upperRightCoordinatesY)
         {
-            this.roversPositions = new Dictionary<Rover, Position>();
+            this.roversOnTheFieldWithTheirPositions = new Dictionary<Rover, Position>();
             this.UpperRightCoordinatesX = upperRightCoordinatesX;
             this.UpperRightCoordinatesY = upperRightCoordinatesY;
         }
@@ -89,7 +89,7 @@ namespace MarsRovers
         {
             var alreadyOccupied = false;
             
-            foreach (var occupiedPosition in this.roversPositions.Values)
+            foreach (var occupiedPosition in this.roversOnTheFieldWithTheirPositions.Values)
             {
                 if (landingPosition == occupiedPosition)
                 {
@@ -109,7 +109,7 @@ namespace MarsRovers
         /// <param name="newPosition">The new position for the rover.</param>
         public void UpdateRoverPosition(Rover rover, Position newPosition)
         {
-            this.roversPositions[rover] = newPosition;
+            this.roversOnTheFieldWithTheirPositions[rover] = newPosition;
         }
     }
 }
