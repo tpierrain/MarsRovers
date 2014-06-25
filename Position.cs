@@ -123,7 +123,6 @@ namespace MarsRovers
 
         #endregion
 
-
         /// <summary>
         /// Parses the specified position pattern.
         /// </summary>
@@ -194,9 +193,10 @@ namespace MarsRovers
 
                 case "E":
                     return new Position(this.X, this.Y, "N");
+                
+                default:
+                    return this;
             }
-
-            return this;
         }
 
         /// <summary>
@@ -218,9 +218,10 @@ namespace MarsRovers
 
                 case "E":
                     return new Position(this.X, this.Y, "S");
-            }
 
-            return this;
+                default:
+                    return this;
+            }
         }
 
         #region private methods

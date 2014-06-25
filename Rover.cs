@@ -41,9 +41,9 @@
                         this.plateau.UpdateRoverPosition(this, newPosition);
                         this.Position = newPosition;
                         break;
+
                     default:
                         throw new InvalidOperationException(string.Format("Unknown instruction: {0}", moveInstruction));
-                        break;
                 }
             }
         }
