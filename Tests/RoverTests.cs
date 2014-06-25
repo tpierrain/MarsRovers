@@ -19,7 +19,7 @@
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Position already occupied 0,1,N. Can not land.")]
         public void LandingOnAnotherRoverThrowsAnException()
         {
             var plateau = new Plateau(1, 1);

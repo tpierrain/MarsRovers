@@ -33,19 +33,19 @@
             var plateau = new Plateau(1, 1);
             
             var position = new Position(0, 0, "N");
-            var newPosition = position.Move(plateau);
+            var newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("0,1,N"));
 
             position = new Position(0, 1, "S");
-            newPosition = position.Move(plateau);
+            newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,S"));
             
             position = new Position(0, 1, "E");
-            newPosition = position.Move(plateau);
+            newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("1,1,E"));
 
             position = new Position(1, 0, "W");
-            newPosition = position.Move(plateau);
+            newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,W"));
         }
 
@@ -55,19 +55,19 @@
             var plateau = new Plateau(1, 1);
 
             var position = new Position(0, 1, "N");
-            var newPosition = position.Move(plateau);
+            var newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("0,1,N"));
 
             position = new Position(0, 0, "S");
-            newPosition = position.Move(plateau);
+            newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,S"));
 
             position = new Position(1, 1, "E");
-            newPosition = position.Move(plateau);
+            newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("1,1,E"));
 
             position = new Position(0, 0, "W");
-            newPosition = position.Move(plateau);
+            newPosition = position.MoveForward(plateau);
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,W"));
         }
 

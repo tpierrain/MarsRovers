@@ -74,7 +74,7 @@ namespace MarsRovers
         {
             if (this.IsAlreadyOccupied(landingPosition))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException(string.Format("Position already occupied {0}. Can not land.", landingPosition));
             }
 
             UpdateRoverPosition(rover, landingPosition);

@@ -10,12 +10,36 @@ namespace MarsRovers
     /// </summary>
     public class Position
     {
+        /// <summary>
+        /// Gets the x position on the plateau.
+        /// </summary>
+        /// <value>
+        /// The x position on the plateau.
+        /// </value>
         public int X { get; private set; }
 
+        /// <summary>
+        /// Gets the y position on the plateau.
+        /// </summary>
+        /// <value>
+        /// The y position on the plateau.
+        /// </value>
         public int Y { get; private set; }
 
+        /// <summary>
+        /// Gets the cardinal compass orientation.
+        /// </summary>
+        /// <value>
+        /// The cardinal compass orientation.
+        /// </value>
         public string CardinalCompassOrientation { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Position"/> class.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="cardinalCompassOrientation">The cardinal compass orientation.</param>
         public Position(int x, int y, string cardinalCompassOrientation)
         {
             this.X = x;
@@ -25,16 +49,34 @@ namespace MarsRovers
         
         #region overrides related
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.Format("{0},{1},{2}", this.X, this.Y, this.CardinalCompassOrientation);
         }
 
+        /// <summary>
+        /// Equalses the specified other.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns></returns>
         protected bool Equals(Position other)
         {
             return this.X == other.X && this.Y == other.Y && string.Equals(this.CardinalCompassOrientation, other.CardinalCompassOrientation);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" }, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -52,6 +94,12 @@ namespace MarsRovers
             return this.Equals((Position)obj);
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             unchecked
@@ -95,7 +143,12 @@ namespace MarsRovers
             return new Position(Convert.ToInt16(splitedPattern[0]), Convert.ToInt16(splitedPattern[1]), cardinalCompassOrientationValue);
         }
 
-        public Position Move(Plateau plateau)
+        /// <summary>
+        /// Moves forward on the specified plateau.
+        /// </summary>
+        /// <param name="plateau">The plateau where we need to move forward.</param>
+        /// <returns>The next position after we have moved forward.</returns>
+        public Position MoveForward(Plateau plateau)
         {
             Position newPosition = this;
 
@@ -122,6 +175,10 @@ namespace MarsRovers
             return newPosition;
         }
 
+        /// <summary>
+        /// Turns on the left.
+        /// </summary>
+        /// <returns>The next position after we have turned on the left.</returns>
         public Position TurnLeft()
         {
             switch (this.CardinalCompassOrientation)
@@ -142,6 +199,10 @@ namespace MarsRovers
             return this;
         }
 
+        /// <summary>
+        /// Turns on the right direction.
+        /// </summary>
+        /// <returns>The next position after we have turned on the right direction.</returns>
         public Position TurnRight()
         {
             switch (this.CardinalCompassOrientation)
@@ -162,6 +223,8 @@ namespace MarsRovers
             return this;
         }
 
+        #region private methods
+
         private bool DoesNotTouchTheWestBundaries(Plateau plateau)
         {
             return this.X > 0;
@@ -181,7 +244,7 @@ namespace MarsRovers
         {
             return this.CardinalCompassOrientation == "W";
         }
-        
+
         private bool IsNorthOriented()
         {
             return this.CardinalCompassOrientation == "N";
@@ -201,5 +264,8 @@ namespace MarsRovers
         {
             return this.Y > 0;
         }
+
+        #endregion
+
     }
 }
