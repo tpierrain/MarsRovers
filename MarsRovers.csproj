@@ -47,9 +47,10 @@
   <ItemGroup>
     <Compile Include="Plateau.cs" />
     <Compile Include="Position.cs" />
-    <Compile Include="PositionTests.cs" />
+    <Compile Include="Tests\AcceptanceTests.cs" />
+    <Compile Include="Tests\PositionTests.cs" />
     <Compile Include="Rover.cs" />
-    <Compile Include="RoverTests.cs" />
+    <Compile Include="Tests\RoverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

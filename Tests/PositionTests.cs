@@ -1,8 +1,9 @@
-﻿namespace MarsRovers
+﻿namespace MarsRovers.Tests
 {
     using NFluent;
+
     using NUnit.Framework;
-    
+
     public class PositionTests
     {
         [Test]
