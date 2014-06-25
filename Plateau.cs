@@ -3,6 +3,9 @@ namespace MarsRovers
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Surface where Rovers may land and move.
+    /// </summary>
     public class Plateau
     {
         #region Fields

@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Remote vehicule with on-board cameras that can get a complete view of the surrounding terrain to send back to Earth (from Mars).
+    /// </summary>
     public class Rover
     {
         private Plateau plateau;
