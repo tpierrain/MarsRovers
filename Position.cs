@@ -144,11 +144,11 @@ namespace MarsRovers
         }
 
         /// <summary>
-        /// Moves forward on the specified plateau.
+        /// Moves one step forward on the specified plateau.
         /// </summary>
-        /// <param name="plateau">The plateau where we need to move forward.</param>
-        /// <returns>The next position after we have moved forward.</returns>
-        public Position MoveForward(Plateau plateau)
+        /// <param name="plateau">The plateau where we need to move one step forward.</param>
+        /// <returns>The next position after we have moved one step forward.</returns>
+        public Position MoveOneStepForward(Plateau plateau)
         {
             Position newPosition = this;
 

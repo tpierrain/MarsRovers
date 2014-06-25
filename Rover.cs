@@ -25,7 +25,7 @@
                 switch (moveInstruction)
                 {
                     case 'M':
-                        newPosition = this.Position.MoveForward(this.plateau);
+                        newPosition = this.Position.MoveOneStepForward(this.plateau);
                         this.plateau.UpdateRoverPosition(this, newPosition);
                         this.Position = newPosition;
                         break;
