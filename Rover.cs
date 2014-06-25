@@ -29,6 +29,12 @@
                         this.plateau.UpdateRoverPosition(this, newPosition);
                         this.Position = newPosition;
                         break;
+
+                    case 'R':
+                        newPosition = this.Position.TurnRight();
+                        this.plateau.UpdateRoverPosition(this, newPosition);
+                        this.Position = newPosition;
+                        break;
                     default:
                         break;
                 }

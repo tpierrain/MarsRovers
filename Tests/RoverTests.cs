@@ -1,5 +1,7 @@
 ﻿namespace MarsRovers.Tests
 {
+    using System;
+
     using NFluent;
     using NUnit.Framework;
 
@@ -16,6 +18,18 @@
             
             rover.Land(plateau, "0,1,N");
             Check.That(rover.Position).IsEqualTo(Position.Parse("0,1,N"));
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void LandingOnAnotherRoverThrowsAnException()
+        {
+            var plateau = new Plateau(1, 1);
+            var firstRover = new Rover();
+            firstRover.Land(plateau, "0,1,N");
+
+            var secondRover = new Rover();
+            secondRover.Land(plateau, "0,1,N");
         }
 
         [Test]
@@ -40,6 +54,26 @@
             
             rover.MoveWithIntructions("M");
             Check.That(rover.Position).IsEqualTo(Position.Parse("0,1,N"));
+        }
+
+        [Test]
+        public void CanNotMoveWhenOtherRoverIsBehind()
+        {
+            var plateau = new Plateau(2, 2);
+            var firstRover = new Rover();
+
+            firstRover.Land(plateau, "0,1,N");
+            Check.That(firstRover.Position).IsEqualTo(Position.Parse("0,1,N"));
+            
+            firstRover.MoveWithIntructions("M");
+            Check.That(firstRover.Position).IsEqualTo(Position.Parse("0,2,N"));
+
+            var secondRover = new Rover();
+            secondRover.Land(plateau, "0,1,N");
+            Check.That(secondRover.Position).IsEqualTo(Position.Parse("0,1,N"));
+
+            secondRover.MoveWithIntructions("M");
+            Check.That(secondRover.Position).IsEqualTo(Position.Parse("0,1,N"));
         }
     }
 }

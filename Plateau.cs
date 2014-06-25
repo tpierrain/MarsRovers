@@ -1,5 +1,6 @@
 namespace MarsRovers
 {
+    using System;
     using System.Collections.Generic;
 
     public class Plateau
@@ -33,9 +34,27 @@ namespace MarsRovers
 
         public void LandRoverAtPosition(Rover rover, Position landingPosition)
         {
+            if (this.AlreadyOccupied(landingPosition))
+            {
+                throw new InvalidOperationException();
+            }
+
             UpdateRoverPosition(rover, landingPosition);
         }
-        
+
+        private bool AlreadyOccupied(Position landingPosition)
+        {
+            bool alreadyOccupied = false;
+            foreach (var occupiedPosition in this.roversPositions.Values)
+            {
+                if (landingPosition == occupiedPosition)
+                {
+                    alreadyOccupied = true;
+                }
+            }
+            return alreadyOccupied;
+        }
+
         #endregion
 
         public void UpdateRoverPosition(Rover rover, Position newPosition)

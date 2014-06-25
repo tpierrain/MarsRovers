@@ -168,5 +168,28 @@ namespace MarsRovers
 
             return this;
         }
+
+        public Position TurnRight()
+        {
+            switch (this.CardinalCompassOrientation)
+            {
+                case "N":
+                    return new Position(this.X, this.Y, "E");
+
+                case "W":
+                    return new Position(this.X, this.Y, "N");
+
+                case "S":
+                    return new Position(this.X, this.Y, "W");
+
+                case "E":
+                    return new Position(this.X, this.Y, "S");
+
+                default: throw new InvalidOperationException("Can not turn left from this unknown cardinal compass orientation.");
+                    break;
+            }
+
+            return this;
+        }
     }
 }
