@@ -22,6 +22,8 @@ namespace MarsRovers
             this.Y = y;
             this.CardinalCompassOrientation = cardinalCompassOrientation;
         }
+        
+        #region overrides related
 
         public override string ToString()
         {
@@ -71,6 +73,15 @@ namespace MarsRovers
             return !Equals(left, right);
         }
 
+        #endregion
+
+
+        /// <summary>
+        /// Parses the specified position pattern.
+        /// </summary>
+        /// <param name="positionPattern">The position pattern.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Unknown cardinal compass orientation value. Should be either: N, S, E or W</exception>
         public static Position Parse(string positionPattern)
         {
             var splitedPattern = positionPattern.Split(',');
@@ -111,46 +122,6 @@ namespace MarsRovers
             return newPosition;
         }
 
-        private bool DoesNotTouchTheWestBundaries(Plateau plateau)
-        {
-            return this.X > 0;
-        }
-
-        private bool DoesNotTouchTheEastBundaries(Plateau plateau)
-        {
-            return this.X < plateau.UpperRightCoordinatesX;
-        }
-
-        private bool IsEastOriented()
-        {
-            return this.CardinalCompassOrientation == "E";
-        }
-
-        private bool IsWestOriented()
-        {
-            return this.CardinalCompassOrientation == "W";
-        }
-        
-        private bool IsNorthOriented()
-        {
-            return this.CardinalCompassOrientation == "N";
-        }
-
-        private bool IsSouthOriented()
-        {
-            return this.CardinalCompassOrientation == "S";
-        }
-
-        private bool DoesNotTouchTheNorthBundaries(Plateau plateau)
-        {
-            return this.Y < plateau.UpperRightCoordinatesY;
-        }
-
-        private bool DoesNotTouchTheSouthBundaries(Plateau plateau)
-        {
-            return this.Y > 0;
-        }
-
         public Position TurnLeft()
         {
             switch (this.CardinalCompassOrientation)
@@ -189,6 +160,46 @@ namespace MarsRovers
             }
 
             return this;
+        }
+
+        private bool DoesNotTouchTheWestBundaries(Plateau plateau)
+        {
+            return this.X > 0;
+        }
+
+        private bool DoesNotTouchTheEastBundaries(Plateau plateau)
+        {
+            return this.X < plateau.UpperRightCoordinatesX;
+        }
+
+        private bool IsEastOriented()
+        {
+            return this.CardinalCompassOrientation == "E";
+        }
+
+        private bool IsWestOriented()
+        {
+            return this.CardinalCompassOrientation == "W";
+        }
+        
+        private bool IsNorthOriented()
+        {
+            return this.CardinalCompassOrientation == "N";
+        }
+
+        private bool IsSouthOriented()
+        {
+            return this.CardinalCompassOrientation == "S";
+        }
+
+        private bool DoesNotTouchTheNorthBundaries(Plateau plateau)
+        {
+            return this.Y < plateau.UpperRightCoordinatesY;
+        }
+
+        private bool DoesNotTouchTheSouthBundaries(Plateau plateau)
+        {
+            return this.Y > 0;
         }
     }
 }

@@ -9,7 +9,8 @@ namespace MarsRovers.Tests
         [Test]
         public void FirstRoverArrivesWhereExpected()
         {
-            var plateau = new Plateau(5, 5);
+            var plateau = new Plateau("5,5");
+
             var rover = new Rover();
             rover.Land(plateau, "1,2,N");
             rover.MoveWithIntructions("LMLMLMLMM");
@@ -20,7 +21,7 @@ namespace MarsRovers.Tests
         [Test]
         public void SecondRoverArrivesWhereExpectedToo()
         {
-            var plateau = new Plateau(5, 5);
+            var plateau = new Plateau("5,5");
 
             var rover = new Rover();
             rover.Land(plateau, "1,2,N");

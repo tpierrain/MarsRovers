@@ -1,5 +1,7 @@
 ﻿namespace MarsRovers
 {
+    using System;
+
     public class Rover
     {
         private Plateau plateau;
@@ -37,6 +39,7 @@
                         this.Position = newPosition;
                         break;
                     default:
+                        throw new InvalidOperationException(string.Format("Unknown instruction: {0}", moveInstruction));
                         break;
                 }
             }

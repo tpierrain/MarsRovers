@@ -55,6 +55,18 @@
         }
 
         [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Unknown instruction: Z")]
+        public void MoveWithIntructionsThrowsWithUnknownInstruction()
+        {
+            var plateau = new Plateau(1, 1);
+            var rover = new Rover();
+
+            rover.Land(plateau, "0,1,N");
+            rover.MoveWithIntructions("MLZ");
+        }
+
+        [Test]
+        [Ignore]
         public void CanNotMoveWhenOtherRoverIsBehindUs()
         {
             var plateau = new Plateau(2, 2);
