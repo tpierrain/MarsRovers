@@ -8,8 +8,6 @@
     [TestFixture]
     public class RoverTests
     {
-        private readonly AcceptanceTests acceptanceTests = new AcceptanceTests();
-
         [Test]
         public void LandWorks()
         {
@@ -57,7 +55,7 @@
         }
 
         [Test]
-        public void CanNotMoveWhenOtherRoverIsBehind()
+        public void CanNotMoveWhenOtherRoverIsBehindUs()
         {
             var plateau = new Plateau(2, 2);
             var firstRover = new Rover();
