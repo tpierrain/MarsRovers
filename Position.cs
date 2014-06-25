@@ -76,7 +76,13 @@ namespace MarsRovers
         public static Position Parse(string positionPattern)
         {
             var splitedPattern = positionPattern.Split(',');
-            return new Position(Convert.ToInt16(splitedPattern[0]), Convert.ToInt16(splitedPattern[1]), splitedPattern[2]);
+            var cardinalCompassOrientationValue = splitedPattern[2];
+            if (!"NSEW".Contains(cardinalCompassOrientationValue))
+            {
+                throw new ArgumentException("Unknown cardinal compass orientation value. Should be either: N, S, E or W");
+            }
+            
+            return new Position(Convert.ToInt16(splitedPattern[0]), Convert.ToInt16(splitedPattern[1]), cardinalCompassOrientationValue);
         }
 
         public Position Move(Plateau plateau)

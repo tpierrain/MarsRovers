@@ -8,6 +8,7 @@
         {
             this.plateau = plateau;
             this.Position = Position.Parse(positionPattern);
+            // TODO: throws if position pattern is outside the plateau's dimension
             this.plateau.LandRoverAtPosition(this, this.Position);
         }
 

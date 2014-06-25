@@ -1,5 +1,7 @@
 ﻿namespace MarsRovers.Tests
 {
+    using System;
+
     using NFluent;
 
     using NUnit.Framework;
@@ -77,6 +79,13 @@
             Check.That(position.X).IsEqualTo(2);
             Check.That(position.Y).IsEqualTo(3);
             Check.That(position.CardinalCompassOrientation).IsEqualTo("N");
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParseThrowsWhenUnknownCardinalCompassOrientationValue()
+        {
+            var position = Position.Parse("2,3,X");
         }
 
         [Test]
