@@ -2,8 +2,6 @@ namespace MarsRovers
 {
     using System;
 
-    using NUnit.Framework.Constraints;
-
     /// <summary>
     /// Describes a position.
     /// <remarks>
@@ -76,6 +74,7 @@ namespace MarsRovers
         public static Position Parse(string positionPattern)
         {
             var splitedPattern = positionPattern.Split(',');
+            
             var cardinalCompassOrientationValue = splitedPattern[2];
             if (!"NSEW".Contains(cardinalCompassOrientationValue))
             {
@@ -167,9 +166,6 @@ namespace MarsRovers
 
                 case "E":
                     return new Position(this.X, this.Y, "N");
-
-                default: throw new InvalidOperationException("Can not turn left from this unknown cardinal compass orientation.");
-                    break;
             }
 
             return this;
@@ -190,9 +186,6 @@ namespace MarsRovers
 
                 case "E":
                     return new Position(this.X, this.Y, "S");
-
-                default: throw new InvalidOperationException("Can not turn left from this unknown cardinal compass orientation.");
-                    break;
             }
 
             return this;
