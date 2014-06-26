@@ -78,7 +78,7 @@ namespace MarsRovers
                 throw new InvalidOperationException(string.Format("Position already occupied {0}. Can not land.", landingPosition));
             }
 
-            if (!this.CanSupport(landingPosition))
+            if (!this.HasTopologySupporting(landingPosition))
             {
                 throw new InvalidOperationException(string.Format("Can not land out of the plateau bundaries.\nRequested landing position: [{0}].\nCurrent plateau boundaries: [{1},{2}].", landingPosition, this.UpperRightCoordinatesX, this.UpperRightCoordinatesY));
             }
@@ -119,11 +119,11 @@ namespace MarsRovers
         }
 
         /// <summary>
-        /// Determines whether this position is part of this plateau instance or not.
+        /// Determines whether this position is part of this plateau or not.
         /// </summary>
         /// <param name="position">The position.</param>
-        /// <returns>True is this position is part of this plateau; false otherwise.</returns>
-        public bool CanSupport(Position position)
+        /// <returns>True is this position is part of the plateau; false otherwise.</returns>
+        public bool HasTopologySupporting(Position position)
         {
             if ((0 <= position.X) && (position.X <= this.UpperRightCoordinatesX) && (0 <= position.Y) && (position.Y <= this.UpperRightCoordinatesY))
             {

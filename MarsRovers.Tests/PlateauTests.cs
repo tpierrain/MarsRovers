@@ -1,25 +1,23 @@
 ﻿namespace MarsRovers.Tests
 {
     using System;
-
     using NFluent;
-
     using NUnit.Framework;
 
     [TestFixture]
     public class PlateauTests
     {
         [Test]
-        public void CanSupportWorks()
+        public void HasTopologySupportingIndicatesIfPositionIsPartOfThePlateau()
         {
             var plateau = new Plateau("5,5");
 
-            Check.That(plateau.CanSupport(Position.Parse("0,0,S"))).IsTrue();
-            Check.That(plateau.CanSupport(Position.Parse("1,2,N"))).IsTrue();
-            Check.That(plateau.CanSupport(Position.Parse("5,5,E"))).IsTrue();
+            Check.That(plateau.HasTopologySupporting(Position.Parse("0,0,S"))).IsTrue();
+            Check.That(plateau.HasTopologySupporting(Position.Parse("1,2,N"))).IsTrue();
+            Check.That(plateau.HasTopologySupporting(Position.Parse("5,5,E"))).IsTrue();
             
-            Check.That(plateau.CanSupport(Position.Parse("5,6,W"))).IsFalse();
-            Check.That(plateau.CanSupport(Position.Parse("6,0,S"))).IsFalse();
+            Check.That(plateau.HasTopologySupporting(Position.Parse("5,6,W"))).IsFalse();
+            Check.That(plateau.HasTopologySupporting(Position.Parse("6,0,S"))).IsFalse();
         }
 
         [Test]

@@ -60,7 +60,7 @@
 
         private void CommitMoveInstructionIfAllowed(Position candidateNewPosition)
         {
-            if (this.plateau.CanSupport(candidateNewPosition) && !this.plateau.HasARoverAlready(candidateNewPosition))
+            if (this.plateau.HasTopologySupporting(candidateNewPosition) && !this.plateau.HasARoverAlready(candidateNewPosition))
             {
                 this.CommitMove(candidateNewPosition);
             }

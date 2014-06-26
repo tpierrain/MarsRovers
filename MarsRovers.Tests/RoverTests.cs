@@ -1,7 +1,6 @@
 ﻿namespace MarsRovers.Tests
 {
     using System;
-
     using NFluent;
     using NUnit.Framework;
 
