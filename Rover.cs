@@ -17,6 +17,11 @@
             this.plateau.LandRoverAtPosition(this, this.Position);
         }
 
+        /// <summary>
+        /// Moves the rover following the intructions (a list of M, L and R letters).
+        /// </summary>
+        /// <param name="moveInstructions">The move instructions.</param>
+        /// <exception cref="System.InvalidOperationException">Unknown instruction. Should be either M, L or R letters (for Move forward, Turn Left or Turn Right)</exception>
         public void MoveWithIntructions(string moveInstructions)
         {
             foreach (var moveInstruction in moveInstructions)
@@ -26,34 +31,31 @@
                 {
                     case 'M':
                         candidateNewPosition = this.Position.MoveOneStepForward();
-                        if (this.plateau.CanSupport(candidateNewPosition))
-                        {
-                            this.plateau.UpdateRoverPosition(this, candidateNewPosition);
-                            this.Position = candidateNewPosition;
-                        }
+                        this.CommitMoveInstructionIfAllowed(candidateNewPosition);
                         break;
 
                     case 'L':
                         candidateNewPosition = this.Position.TurnLeft();
-                        if (this.plateau.CanSupport(candidateNewPosition))
-                        {
-                            this.plateau.UpdateRoverPosition(this, candidateNewPosition);
-                            this.Position = candidateNewPosition;
-                        }
+                        this.CommitMoveInstructionIfAllowed(candidateNewPosition);
                         break;
 
                     case 'R':
                         candidateNewPosition = this.Position.TurnRight();
-                        if (this.plateau.CanSupport(candidateNewPosition))
-                        {
-                            this.plateau.UpdateRoverPosition(this, candidateNewPosition);
-                            this.Position = candidateNewPosition;
-                        }
+                        this.CommitMoveInstructionIfAllowed(candidateNewPosition);
                         break;
 
                     default:
-                        throw new InvalidOperationException(string.Format("Unknown instruction: {0}", moveInstruction));
+                        throw new InvalidOperationException(string.Format("Unknown instruction: {0}. Should be either M, L or R letters (for Move forward, Turn Left or Turn Right)", moveInstruction));
                 }
+            }
+        }
+
+        private void CommitMoveInstructionIfAllowed(Position candidateNewPosition)
+        {
+            if (this.plateau.CanSupport(candidateNewPosition))
+            {
+                this.plateau.UpdateRoverPosition(this, candidateNewPosition);
+                this.Position = candidateNewPosition;
             }
         }
 

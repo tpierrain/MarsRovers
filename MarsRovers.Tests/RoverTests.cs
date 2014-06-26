@@ -55,7 +55,7 @@
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Unknown instruction: Z")]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Unknown instruction: Z. Should be either M, L or R letters (for Move forward, Turn Left or Turn Right)")]
         public void MoveWithIntructionsThrowsWithUnknownInstruction()
         {
             var plateau = new Plateau(1, 1);

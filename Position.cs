@@ -143,7 +143,7 @@ namespace MarsRovers
         }
 
         /// <summary>
-        /// Moves one step forward.
+        /// Moves one step forward folllowing the CardinalCompassOrientation of the current Position, until it does not go below 0 (for X but also for Y).
         /// </summary>
         /// <returns>The next position after we have moved one step forward.</returns>
         public Position MoveOneStepForward()
@@ -246,6 +246,5 @@ namespace MarsRovers
         }
 
         #endregion
-
     }
 }
