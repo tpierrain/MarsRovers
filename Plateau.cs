@@ -4,7 +4,8 @@ namespace MarsRovers
     using System.Collections.Generic;
 
     /// <summary>
-    /// Field where Rovers may land and move.
+    /// Field where Rovers may land and move. 
+    /// The <see cref="Plateau"/> is responsible to provide informations about its topology and what is on it.
     /// </summary>
     public class Plateau
     {
@@ -127,6 +128,24 @@ namespace MarsRovers
             if ((0 <= position.X) && (position.X <= this.UpperRightCoordinatesX) && (0 <= position.Y) && (position.Y <= this.UpperRightCoordinatesY))
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determines whether there is no rover already to the specified position.
+        /// </summary>
+        /// <param name="specifiedPosition">The specified position.</param>
+        /// <returns>true if no Rover is already at that position; false otherwise.</returns>
+        public bool HasARoverAlready(Position specifiedPosition)
+        {
+            foreach (var position in this.roversOnTheFieldWithTheirPositions.Values)
+            {
+                if (position.HasSameCoordinates(specifiedPosition))
+                {
+                    return true;
+                }
             }
 
             return false;

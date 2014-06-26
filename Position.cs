@@ -3,9 +3,9 @@ namespace MarsRovers
     using System;
 
     /// <summary>
-    /// Describes a position.
+    /// Describes a position and provides few "arithmetical" operations on it.
     /// <remarks>
-    ///     implement closure of operations
+    ///     Value type object with closure of operations implemented (see. DDD).
     /// </remarks>
     /// </summary>
     public class Position
@@ -122,6 +122,16 @@ namespace MarsRovers
         }
 
         #endregion
+
+        /// <summary>
+        /// Determines whether or not the specified other position has same coordinates. 
+        /// </summary>
+        /// <param name="otherPosition">The other position.</param>
+        /// <returns>true if the other position has the same coordinates; false otherwise.</returns>
+        public bool HasSameCoordinates(Position otherPosition)
+        {
+            return this.X == otherPosition.X && this.Y == otherPosition.Y;
+        }
 
         /// <summary>
         /// Parses the specified position pattern.

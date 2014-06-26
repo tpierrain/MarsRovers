@@ -66,7 +66,6 @@
         }
 
         [Test]
-        [Ignore]
         public void CanNotMoveWhenOtherRoverIsBehindUs()
         {
             var plateau = new Plateau(2, 2);

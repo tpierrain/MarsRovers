@@ -41,5 +41,17 @@
 
             plateau.LandRoverAtPosition(rover, Position.Parse("6,-1,S"));
         }
+
+        [Test]
+        public void HasARoverAlreadyWorks()
+        {
+            var plateau = new Plateau("5,5");
+            var rover = new Rover();
+
+            plateau.LandRoverAtPosition(rover, Position.Parse("3,2,S"));
+
+            Check.That(plateau.HasARoverAlready(Position.Parse("3,2,S"))).IsTrue();
+            Check.That(plateau.HasARoverAlready(Position.Parse("3,2,N"))).IsTrue();
+        }
     }
 }

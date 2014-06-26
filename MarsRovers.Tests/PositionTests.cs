@@ -83,6 +83,19 @@
         }
 
         [Test]
+        public void HasSameCoordinatesWorks()
+        {
+            var position = Position.Parse("2,3,N");
+            var samePosition = Position.Parse("2,3,E");
+
+            Check.That(position.HasSameCoordinates(samePosition)).IsTrue();
+            Check.That(position.HasSameCoordinates(position)).IsTrue();
+
+            var positionWithDifferentCoordinates = Position.Parse("1,3,N");
+            Check.That(position.HasSameCoordinates(positionWithDifferentCoordinates)).IsFalse();
+        }
+
+        [Test]
         public void ToStringWorks()
         {
             var firstPosition = new Position(2, 3, "N");
