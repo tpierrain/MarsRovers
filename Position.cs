@@ -143,30 +143,29 @@ namespace MarsRovers
         }
 
         /// <summary>
-        /// Moves one step forward on the specified plateau.
+        /// Moves one step forward.
         /// </summary>
-        /// <param name="plateau">The plateau where we need to move one step forward.</param>
         /// <returns>The next position after we have moved one step forward.</returns>
-        public Position MoveOneStepForward(Plateau plateau)
+        public Position MoveOneStepForward()
         {
             Position newPosition = this;
 
-            if (this.IsNorthOriented() && this.DoesNotTouchTheNorthBundaries(plateau))
+            if (this.IsNorthOriented())
             {
                 newPosition = new Position(this.X, this.Y + 1, this.CardinalCompassOrientation);
             }
 
-            if (this.IsSouthOriented() && this.DoesNotTouchTheSouthBundaries(plateau))
+            if (this.IsSouthOriented() && this.Y > 0)
             {
                 newPosition = new Position(this.X, this.Y - 1, this.CardinalCompassOrientation);
             }
 
-            if (this.IsEastOriented() && this.DoesNotTouchTheEastBundaries(plateau))
+            if (this.IsEastOriented())
             {
                 newPosition = new Position(this.X + 1, this.Y, this.CardinalCompassOrientation);
             }
 
-            if (this.IsWestOriented() && this.DoesNotTouchTheWestBundaries(plateau))
+            if (this.IsWestOriented() && this.X > 0)
             {
                 newPosition = new Position(this.X - 1, this.Y, this.CardinalCompassOrientation);
             }
@@ -226,16 +225,6 @@ namespace MarsRovers
 
         #region private methods
 
-        private bool DoesNotTouchTheWestBundaries(Plateau plateau)
-        {
-            return this.X > 0;
-        }
-
-        private bool DoesNotTouchTheEastBundaries(Plateau plateau)
-        {
-            return this.X < plateau.UpperRightCoordinatesX;
-        }
-
         private bool IsEastOriented()
         {
             return this.CardinalCompassOrientation == "E";
@@ -254,16 +243,6 @@ namespace MarsRovers
         private bool IsSouthOriented()
         {
             return this.CardinalCompassOrientation == "S";
-        }
-
-        private bool DoesNotTouchTheNorthBundaries(Plateau plateau)
-        {
-            return this.Y < plateau.UpperRightCoordinatesY;
-        }
-
-        private bool DoesNotTouchTheSouthBundaries(Plateau plateau)
-        {
-            return this.Y > 0;
         }
 
         #endregion

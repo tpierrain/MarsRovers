@@ -21,25 +21,34 @@
         {
             foreach (var moveInstruction in moveInstructions)
             {
-                Position newPosition;
+                Position candidateNewPosition;
                 switch (moveInstruction)
                 {
                     case 'M':
-                        newPosition = this.Position.MoveOneStepForward(this.plateau);
-                        this.plateau.UpdateRoverPosition(this, newPosition);
-                        this.Position = newPosition;
+                        candidateNewPosition = this.Position.MoveOneStepForward();
+                        if (this.plateau.CanSupport(candidateNewPosition))
+                        {
+                            this.plateau.UpdateRoverPosition(this, candidateNewPosition);
+                            this.Position = candidateNewPosition;
+                        }
                         break;
 
                     case 'L':
-                        newPosition = this.Position.TurnLeft();
-                        this.plateau.UpdateRoverPosition(this, newPosition);
-                        this.Position = newPosition;
+                        candidateNewPosition = this.Position.TurnLeft();
+                        if (this.plateau.CanSupport(candidateNewPosition))
+                        {
+                            this.plateau.UpdateRoverPosition(this, candidateNewPosition);
+                            this.Position = candidateNewPosition;
+                        }
                         break;
 
                     case 'R':
-                        newPosition = this.Position.TurnRight();
-                        this.plateau.UpdateRoverPosition(this, newPosition);
-                        this.Position = newPosition;
+                        candidateNewPosition = this.Position.TurnRight();
+                        if (this.plateau.CanSupport(candidateNewPosition))
+                        {
+                            this.plateau.UpdateRoverPosition(this, candidateNewPosition);
+                            this.Position = candidateNewPosition;
+                        }
                         break;
 
                     default:

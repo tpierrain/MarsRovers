@@ -28,44 +28,40 @@
         [Test]
         public void MoveOneStepForwardWorksInAllDirections()
         {
-            var plateau = new Plateau(1, 1);
-            
             var position = new Position(0, 0, "N");
-            var newPosition = position.MoveOneStepForward(plateau);
+            var newPosition = position.MoveOneStepForward();
             Check.That(newPosition).IsEqualTo(Position.Parse("0,1,N"));
 
             position = new Position(0, 1, "S");
-            newPosition = position.MoveOneStepForward(plateau);
+            newPosition = position.MoveOneStepForward();
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,S"));
             
             position = new Position(0, 1, "E");
-            newPosition = position.MoveOneStepForward(plateau);
+            newPosition = position.MoveOneStepForward();
             Check.That(newPosition).IsEqualTo(Position.Parse("1,1,E"));
 
             position = new Position(1, 0, "W");
-            newPosition = position.MoveOneStepForward(plateau);
+            newPosition = position.MoveOneStepForward();
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,W"));
         }
 
         [Test]
         public void MoveOneStepForwardCanNotExitThePlateauWhateverTheDirection()
         {
-            var plateau = new Plateau(1, 1);
-
             var position = new Position(0, 1, "N");
-            var newPosition = position.MoveOneStepForward(plateau);
-            Check.That(newPosition).IsEqualTo(Position.Parse("0,1,N"));
+            var newPosition = position.MoveOneStepForward();
+            Check.That(newPosition).IsEqualTo(Position.Parse("0,2,N"));
 
             position = new Position(0, 0, "S");
-            newPosition = position.MoveOneStepForward(plateau);
+            newPosition = position.MoveOneStepForward();
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,S"));
 
             position = new Position(1, 1, "E");
-            newPosition = position.MoveOneStepForward(plateau);
-            Check.That(newPosition).IsEqualTo(Position.Parse("1,1,E"));
+            newPosition = position.MoveOneStepForward();
+            Check.That(newPosition).IsEqualTo(Position.Parse("2,1,E"));
 
             position = new Position(0, 0, "W");
-            newPosition = position.MoveOneStepForward(plateau);
+            newPosition = position.MoveOneStepForward();
             Check.That(newPosition).IsEqualTo(Position.Parse("0,0,W"));
         }
 

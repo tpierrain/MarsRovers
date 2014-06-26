@@ -111,5 +111,20 @@ namespace MarsRovers
         {
             this.roversOnTheFieldWithTheirPositions[rover] = newPosition;
         }
+
+        /// <summary>
+        /// Determines whether this position is part of this plateau instance.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <returns>True is this position is part of this plateau; false otherwise.</returns>
+        public bool CanSupport(Position position)
+        {
+            if ((0 <= position.X) && (position.X <= this.UpperRightCoordinatesX) && (0 <= position.Y) && (position.Y <= this.UpperRightCoordinatesY))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
