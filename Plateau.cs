@@ -69,7 +69,7 @@ namespace MarsRovers
         /// </summary>
         /// <param name="rover">The rover to land.</param>
         /// <param name="landingPosition">The landing position.</param>
-        /// <exception cref="System.InvalidOperationException">The position is already occupied by another Rover.</exception>
+        /// <exception cref="System.InvalidOperationException">The position is already occupied by another Rover or the requested landing position is out of the plateau boundaries.</exception>
         public void LandRoverAtPosition(Rover rover, Position landingPosition)
         {
             if (this.IsAlreadyOccupied(landingPosition))
