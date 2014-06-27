@@ -93,17 +93,15 @@ namespace MarsRovers
         /// <returns>true if the specified landing position is already occupied; false otherwise.</returns>
         private bool IsAlreadyOccupied(Position landingPosition)
         {
-            var alreadyOccupied = false;
-            
             foreach (var occupiedPosition in this.roversOnTheFieldWithTheirPositions.Values)
             {
                 if (landingPosition == occupiedPosition)
                 {
-                    alreadyOccupied = true;
+                    return true;
                 }
             }
 
-            return alreadyOccupied;
+            return false;
         }
 
         #endregion
